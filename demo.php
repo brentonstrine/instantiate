@@ -1,0 +1,286 @@
+<?php
+$title = "Put the page title here";
+$pageJavascript = <<<'EOJ'
+	<script type="text/javascript">
+		//this is how to insert page-specific javascript into the header.
+		//there are many cases where we don't want to muddle up the main JS file
+		//with one-off JS, and we don't want to add an extra HTTP request
+		//just to include a page-specific script
+	</script>
+
+EOJ;
+?>
+<?php include("inc/header.php"); ?>
+	<form class="main form validate"><!--
+	pages that are mainly forms have <form> here. If it is not a form, use <div class="main">.
+	If this is a common page type, you'll also put a second class in there, for example all the
+	FAQ pages have <div class="main faq"> which the CSS uses to make FAQ-specific pages. This
+	may have been a mistake, semantically, since some non-FAQ pages may want to use the same
+	format. If you can think of a more semantic name, that'd be awesome.
+	-->
+		<div class="row">
+			<p><b>Instantiate!</b> is a jQuery plugin to instantly validate form inputs on a per-input basis. As soon as a user leaves an input, it is validated and error messages are presented right on the form. Then, while the user is correcting the input, it is validated with each keystroke until it is corrected.</p>
+
+			<p>All form controls are automatically validated on blur, if any are enabled for that input. There are several types of validation possible, checked starting with the simplest cases and moving to more complex cases. If an input fails a simple case, validation stops and does not evaluate more complicated cases. If all validation passes, a brief green flash indicates that the input has passed validation.</p>
+		</div>
+		<h2>No Validation</h2>
+		<pre class="row">
+<code>&lt;input type="text" class="full"
+	placeholder="Just don't use the 'required' parameter!"
+	&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>This is Optional</label>
+			<div class="controls">
+				<input type="text" class="full" placeholder="Just don't use the 'required' parameter!" >
+			</div>
+		</div>
+
+		<h2>Required Validation</h2>
+		<div class="row">
+			<p>Simply use the <code>required</code> attribute to force something, anything, to be entered. Modern browsers will do their own check onsubmit to make sure the field is filled, but our validate() function does it onblur.</p>
+		</div>
+		<pre class="row">
+<code>&lt;input type="text" class="full"
+	placeholder="I can't be blank!"
+	<b>required</b>&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>This is Required</label>
+			<div class="controls">
+				<input type="text" class="full"
+					placeholder="I can't be blank!"
+					required>
+			</div>
+		</div>
+
+		<h2>Pattern Validation</h2>
+		<div class="row">
+			<p>HTML5 introduced the <code>pattern</code> attribute. Put a regular expression as the value. It's ok to use <a href="http://html5pattern.com">patterns other people made</a> or <a href="http://regexlib.com/"></a>look up a specific regular expression</a>. I usually test my regex patterns with <a href="http://www.rubular.com">rubular</a>. Modern browsers will automatically make sure that the value meets the requirements of the pattern onsubmit. But again, we make use of it sooner, onblur.</p>
+			<p>Whenever you specify a <code>pattern</code>, you should provide a description of that pattern, so that users can know what the requirements are. To do this, simply add the attribute <code>data-pattern-desc</code>, and provide a description of the requirements that will be shown when they get it wrong. Be as exhaustive as you can in the description, yet terse.</p>
+		</div>
+		<pre class="row">
+<code>&lt;input type="text" class="full"
+	placeholder="Enter username"
+	required
+	<b>pattern</b>="[a-zA-Z][a-zA-Z0-9-_\.]{7,}"
+	<b>data-pattern-desc</b>="Must start with a letter, be a minimum of 8 characters. Only numbers and letters are allowed."&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>Create a Username</label>
+			<div class="controls">
+				<input type="text" class="full"
+				        placeholder="Enter username"
+					required
+					pattern="[a-zA-Z][a-zA-Z0-9-_\.]{7,}"
+					data-pattern-desc="Must start with a letter, be a minimum of 8 characters. Only numbers and letters are allowed."
+					>
+					<div class="validation username"></div>
+			</div>
+		</div>
+
+		<h2>Ajax Validation</h2>
+		<div class="row">
+			<p>For validation that is more complicated than meeting a regular expression, use Ajax validation. There are two steps.</p>
+			<ol>
+				<li>Add the <code>data-ajax-validate</code> attribute, and for it's value, put the filename of the backend PHP script that you want to do the validating (e.g. put "<code>username</code>" for "<code>ajax/username.php</code>").</li>
+				<li>Now create a PHP script with the same name and put it inside the folder <code>/ajax/</code>. The script POST recieves the value of the field with the name "<code>userInput</code>", so you could do something like <code>$_POST['userInput']</code> to get it. The script should return a JSON array containing the value <code>passedValidation</code>, which is <code>true</code> if it passed and <code>false</code> if it failed validation. You need to also include the value <code>desc</code> when it fails validation, which contains a description of the field requirements or a reason that it failed to validate. This will go in the error tip.</li>
+			</ol>
+			<p class="note">If the user has previously failed <code>pattern</code> or some other validation, the error tip will change when they move on to Ajax validation. See demo below for an example.</p>
+		</div>
+		<pre class="row">
+<code>&lt;input type="text" class="full"
+	placeholder="Enter username"
+	required
+	pattern="[a-zA-Z][a-zA-Z0-9-_\.]{7,}"
+	data-pattern-desc="Must start with a letter, be a minimum of 8 characters. Only numbers and letters are allowed."
+	<b>data-ajax-validate</b>="username"&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>Create a Username</label>
+			<div class="controls">
+				<input type="text" class="full"
+				        placeholder="Enter username"
+					required
+					pattern="[a-zA-Z][a-zA-Z0-9-_\.]{7,}"
+					data-pattern-desc="Must start with a letter, be a minimum of 8 characters. Only numbers and letters are allowed."
+					data-ajax-validate="demo"
+					>
+					<div class="validation username"></div>
+			</div>
+		</div>
+
+		<h2>Running an Arbitrary Function</h2>
+		<div class="row">
+			<p>For cases where additional actions must be taken, or the validation requires interaction with other elements on the page, you can create a Javascript function to do anything you want. Use the attribute <code>data-func</code>, and specify the complete function call as the value. For example, if your function is named reType, enter: <code>reType($elem, $('#password'));</code>.  See below for examples of existing functions.</p>
+		</div>
+
+		<h3>reType()</h3>
+		<div class="row">
+			<p>Confirm that text in current element (first parameter, which is always "<code>$elem</code>") matches a specified element (second parameter.)</p>
+		</div>
+		<pre class="row">
+<code>function <b>reType</b>($elem, $origElem) {
+	//matches
+	if($elem.val() == $origElem.val()){
+		return true;
+	//failed to match
+	} else {
+		$elem.addClass("error");
+		$elem.attr("data-errMsg", "This field must match the specified field exactly.");
+		return false;
+	}
+}</code>
+		</pre>
+		<pre class="row">
+<code>&lt;input type="password" class="full"
+	placeholder="Re-enter password"
+	<b>data-func="reType($elem, $('#password'));"</b>&gt;</code>
+		</pre>
+		<div class="example">
+			<div class="control row">
+				<label>Choose a password</label>
+				<div class="controls">
+					<input type="password" class="full" id="password" placeholder="Enter Password">
+				</div>
+			</div>
+			<div class="control row">
+				<label>Re-enter password</label>
+				<div class="controls">
+					<input type="password" class="full"
+						placeholder="Re-enter password"
+						data-func="reType($elem, $('#password'));">
+				</div>
+			</div>
+		</div>
+
+		<h3>emailCheck()</h3>
+		<div class="row">
+			<p>Use built-in browser email validation to check input value (only one parameter, which is always "<code>$elem</code>").</p>
+		</div>
+		<pre class="row">
+<code>function <b>emailCheck</b>($elem) {
+	if($elem[0].checkValidity()){
+		return true;
+	} else {
+		$elem.addClass("error");
+		$elem.attr("data-errMsg", "Must be a valid email address.");
+		return false;
+	}
+}</code>
+		</pre>
+		<pre class="row">
+<code>&lt;input type="email" class="full"
+	placeholder="Enter Email"
+	<b>data-func="emailCheck($elem);"</b>&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>Enter email address</label>
+			<div class="controls">
+				<input type="email" class="full" id="email" name="email"
+					placeholder="example@domain.com"
+					data-func="emailCheck($elem)">
+			</div>
+		</div>
+
+		<h3>duplicate()</h3>
+		<div class="row">
+			<p>Copy value (first parameter, which is always "<code>$elem</code>") to specified element (second parameter). Always returns true (not actually validating anything).</p>
+		</div>
+		<pre class="row">
+<code>function <b>duplicate</b>($elem, $targetElem) {
+	$targetElem.val($elem.val());
+	return true;
+}</code>
+		</pre>
+		<pre class="row">
+<code>&lt;input type="text" class="full" id="address1" name="address1"
+	placeholder="1234 Example Street"
+	<b>data-func="duplicate($elem, $('#billingAddress1'))"</b>&gt;</code>
+		</pre>
+		<div class="example">
+			<div class="control row">
+				<label for="address1">Home Address</label>
+				<div class="controls">
+					<input type="text" class="full" id="address1" name="address1"
+						placeholder="1234 Example Street"
+						data-func="duplicate($elem, $('#billingAddress1'))">
+				</div>
+			</div>
+			<div class="control row">
+				<label for="address1">Billing Address</label>
+				<div class="controls">
+					<input type="text" class="full" id="billingAddress1" name="billingAddress1" value="watch me change" disabled>
+				</div>
+			</div>
+		</div>
+
+		<h3>emailCheck()</h3>
+		<div class="row">
+			<p>Use built-in browser email validation to check input value (only one parameter, which is always "<code>$elem</code>").</p>
+		</div>
+		<pre class="row">
+<code>function <b>emailCheck</b>($elem) {
+	if($elem[0].checkValidity()){
+		return true;
+	} else {
+		$elem.addClass("error");
+		$elem.attr("data-errMsg", "Must be a valid email address.");
+		return false;
+	}
+}</code>
+		</pre>
+		<pre class="row">
+<code>&lt;input type="email" class="full"
+	placeholder="Enter Email"
+	<b>data-func="emailCheck($elem);"</b>&gt;</code>
+		</pre>
+		<div class="control row example">
+			<label>Enter email address</label>
+			<div class="controls">
+				<input type="email" class="full" id="email" name="email"
+					placeholder="example@domain.com"
+					data-func="emailCheck($elem)">
+			</div>
+		</div>
+
+		<h3>stripSpecial()</h3>
+		<div class="row">
+			<p>Remove non-digit characters from value to simplify validation in some cases (e.g. makes 123-45-678 into 12345678). Takes only one parameter, which is always "<code>$elem</code>". Always returns true (not actually validating anything).</p>
+		</div>
+		<pre class="row">
+<code>function <b>stripSpecial</b>($elem) {
+	$elem.val($elem.val().replace(/\D/,""));
+	return true;
+}</code>
+		</pre>
+		<pre class="row">
+<code>&lt;input type="text" class="full" id="ssn" name="ssn"
+	placeholder="Try putting some dashes or spaces."
+	required
+	<b>data-func="stripSpecial($elem);"</b>
+	pattern="^(\d{3}-*?\d{2}-*?\d{4})$"
+	data-pattern-desc="Must be a valid Social Security number, e.g. 555-55-5555."&gt;</code>
+		</pre>
+	<div class="control row example">
+		<label for="ssn">Social Security No.</label>
+		<div class="controls">
+			<input type="text" class="full" id="ssn" name="ssn"
+				placeholder="Try putting some dashes or spaces."
+				required
+				data-func="stripSpecial($elem);"
+				pattern="^(\d{3}-*?\d{2}-*?\d{4})$"
+				data-pattern-desc="Must be a valid Social Security number, e.g. 555-55-5555.">
+		</div>
+	</div>
+
+
+
+
+			<h2>All of the Above</h2>
+		<div class="row">
+			<p>A form can have any combination of validations--even all of them. The script is optimized so that it does not take any additional time to process a form with many types of validation.</p>
+		</div>
+	</form>
+
+<?php include("inc/footer.php"); ?>

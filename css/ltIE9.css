@@ -1,0 +1,7 @@
+.innerBox {
+        border: solid 1px #ccc;
+}
+.flipH {
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
