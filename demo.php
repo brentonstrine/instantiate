@@ -1,26 +1,25 @@
-<?php
-$title = "Put the page title here";
-$pageJavascript = <<<'EOJ'
-	<script type="text/javascript">
-		//this is how to insert page-specific javascript into the header.
-		//there are many cases where we don't want to muddle up the main JS file
-		//with one-off JS, and we don't want to add an extra HTTP request
-		//just to include a page-specific script
-	</script>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instantiate! Instant form validation.</title>
+<!-- Load CSS first to allow parallel downloading -->
+	<!-- main CSS --><link href="css/main.css" rel="stylesheet">
+	<!--[if lt IE 9]><link href="css/ltIE9.css" rel="stylesheet"><![endif]-->
+<!-- Load Javascript -->
+	<!-- jQuery   --><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+	<!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+	<!-- main JS --><script src="js/main.js" ></script>
+</head>
+<body>
+<div id="container">
+	<header>
+		<h1>Instantiate!</h1>
+		<h2 class="subheader">Instant Form Validation</h2>
+	</header>
 
-EOJ;
-?>
-<?php include("inc/header.php"); ?>
-	<form class="main form validate"><!--
-	pages that are mainly forms have <form> here. If it is not a form, use <div class="main">.
-	If this is a common page type, you'll also put a second class in there, for example all the
-	FAQ pages have <div class="main faq"> which the CSS uses to make FAQ-specific pages. This
-	may have been a mistake, semantically, since some non-FAQ pages may want to use the same
-	format. If you can think of a more semantic name, that'd be awesome.
-	-->
+	<form class="main form validate">
 		<div class="row">
 			<p><b>Instantiate!</b> is a jQuery plugin to instantly validate form inputs on a per-input basis. As soon as a user leaves an input, it is validated and error messages are presented right on the form. Then, while the user is correcting the input, it is validated with each keystroke until it is corrected.</p>
-
 			<p>All form controls are automatically validated on blur, if any are enabled for that input. There are several types of validation possible, checked starting with the simplest cases and moving to more complex cases. If an input fails a simple case, validation stops and does not evaluate more complicated cases. If all validation passes, a brief green flash indicates that the input has passed validation.</p>
 		</div>
 		<h2>No Validation</h2>
@@ -262,25 +261,22 @@ EOJ;
 	pattern="^(\d{3}-*?\d{2}-*?\d{4})$"
 	data-pattern-desc="Must be a valid Social Security number, e.g. 555-55-5555."&gt;</code>
 		</pre>
-	<div class="control row example">
-		<label for="ssn">Social Security No.</label>
-		<div class="controls">
-			<input type="text" class="full" id="ssn" name="ssn"
-				placeholder="Try putting some dashes or spaces."
-				required
-				data-func="stripSpecial($elem);"
-				pattern="^(\d{3}-*?\d{2}-*?\d{4})$"
-				data-pattern-desc="Must be a valid Social Security number, e.g. 555-55-5555.">
+		<div class="control row example">
+			<label for="ssn">Social Security No.</label>
+			<div class="controls">
+				<input type="text" class="full" id="ssn" name="ssn"
+					placeholder="Try putting some dashes or spaces."
+					required
+					data-func="stripSpecial($elem);"
+					pattern="^(\d{3}-*?\d{2}-*?\d{4})$"
+					data-pattern-desc="Must be a valid Social Security number, e.g. 555-55-5555.">
+			</div>
 		</div>
-	</div>
-
-
-
-
-			<h2>All of the Above</h2>
+		<h2>All of the Above</h2>
 		<div class="row">
 			<p>A form can have any combination of validations--even all of them. The script is optimized so that it does not take any additional time to process a form with many types of validation.</p>
 		</div>
 	</form>
-
-<?php include("inc/footer.php"); ?>
+</div>
+</body>
+</html>

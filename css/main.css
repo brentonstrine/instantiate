@@ -156,7 +156,7 @@ body {text-align:center;
 .main, .form, footer {
 	background-color: #fff;
 	padding: 1px 0; /*without this, the background of these elments does not go to the full height--this will happen in any cases where the first child element has a top margin or the last child element has a bottom margin. I'm not sure why, but giving the padding 1px seems to fix it. */
-
+	border-radius: 1em;
 }
 
 #container { width: 890px; text-align: left;margin-left: auto;margin-right: auto;position: relative;}
