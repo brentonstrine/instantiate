@@ -126,12 +126,6 @@
 				<input type="text" class="full" id="securityAnswer" name="securityAnswer" placeholder="Custom answer" required>
 			</div>
 		</div>
-		<div class="control row">
-			<label>Security validation</label>
-			<div class="controls">
-				<div id="reCaptcha"><img src="img/recaptcha.png" alt="dummy reCaptcha"></div>
-			</div>
-		</div>
 
 		<h1>Personal Information</h1>
 		<h2><span class="small">Please enter your personal details</span></h2>
@@ -311,61 +305,31 @@
 			</div>
 		</div>
 
-		<h1>Deposit Your Account</h1>
-		<h2><span class="small">Enter desired amount to deposit your account or select the minimum deposit of $10.00</span></h2>
+		<h1>Choose Your Salary</h1>
+		<h2><span class="small">What is your desired annual salary?</span></h2>
 		<div class="control row">
-			<p class="note">You may not deposit more than $5000 for the first 30 days from the initial registration date</p>
+			<p class="note">Make sure you don't put more than you're worth!</p>
 		</div>
 		<div class="control row">
-			<label class="label inline" for="depositAmount">Amount</label>
+			<label class="label inline" for="depositAmount">Desired Salary</label>
 			<div class="controls inline showDollar">
 				<input type="text" name="depositAmount" id="depositAmount" style="text-align: right;" class="medium" pattern="^\d+(\.|\,)\d{2}$">
 			</div>
 			<p class="label inline">OR</p>
 			<div class="controls inline">
-				<label for="min10" ><input type="checkbox" name="min10" value="true"  id="min10" > Minimum deposit of $10.00</label>
+				<label for="min10" ><input type="checkbox" name="min10" value="true"  id="min10" > Just max me out</label>
 			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="control row small">
-			<p><label for="auth" ><input type="checkbox" name="auth" value="true"  id="auth" > I hereby authorize a deposit and transaction to my account</label></p>
 			<div class="clearfix"></div>
 		</div>
 
 		<!--<a class="sprite back" href="registration.php">Back</a>
 		<a class="sprite next" href="registration3.php">Next</a>-->
-
-		<!-- "Page" 3 -->
-				<h1>Agreements</h1>
-		<h2><span class="small">Read and accept to register</span></h2>
-		<div class="control row">
-			<div class="fineprint">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio ante, vulputate sed eleifend ut, egestas sed sapien. Sed in eros ut diam faucibus laoreet. Proin leo eros, varius ut scelerisque sit amet, tempus non justo. In quis massa odio, ac condimentum libero. Etiam fringilla sem in turpis ultricies et viverra ante porttitor. Vivamus ac condimentum magna. Mauris nec diam a velit pellentesque vestibulum. Morbi placerat mi id lorem feugiat vulputate. In quis neque libero. Phasellus dictum, orci ut sodales bibendum, turpis sapien condimentum felis, nec aliquet diam metus sit amet nunc. Praesent tristique malesuada lectus, a volutpat lorem rutrum vitae. Nulla at mauris et est consequat suscipit.</p>
-				<p>Etiam sit amet imperdiet nisi. Curabitur fermentum magna sit amet lectus molestie non ornare sem posuere. Sed nulla neque, eleifend ut pharetra et, vulputate ac justo. Donec auctor dolor sed arcu vehicula at dapibus tellus tincidunt. Fusce vulputate, quam vitae aliquet gravida, quam eros dapibus ligula, tempor aliquet sapien massa in mi. Phasellus in odio diam, ut egestas ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin eleifend sem a dolor cursus eget vestibulum lorem tincidunt. Proin sit amet libero neque, sed viverra massa. Sed at metus sed eros ornare consequat et vitae metus. Sed non justo ante.</p>
-				<p>Nulla facilisi. Sed tincidunt risus nec nisi bibendum ultricies. Vestibulum pharetra diam consequat turpis congue tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, nisl sed laoreet dapibus, nisi lorem auctor ligula, sit amet tempus magna nunc at mi. Maecenas velit ligula, porttitor eu tristique sit amet, pharetra ac lorem. In hac habitasse platea dictumst. Cras ac porta turpis. Maecenas suscipit enim at odio vestibulum venenatis et quis elit. Pellentesque nibh velit, gravida eget feugiat a, laoreet eu neque. Duis vitae dolor et massa aliquet sollicitudin nec vitae justo. Pellentesque eleifend mi a risus semper pharetra. Aenean tempor imperdiet luctus. Mauris pharetra condimentum molestie. Proin scelerisque ornare massa, ac pharetra augue semper et.</p>
-				<p>Integer ac tortor a massa gravida fermentum eu quis dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec aliquam odio et risus rutrum ornare. Suspendisse potenti. In sed diam et lacus commodo accumsan. Nunc in purus justo, eget suscipit enim. Vivamus fringilla aliquam nibh ac euismod. Vestibulum ultrices lorem at ipsum dictum sed facilisis risus tincidunt. Praesent pellentesque placerat lorem, et imperdiet sem gravida nec. Suspendisse potenti. Nunc eu varius justo. Ut et pulvinar urna.</p>
-				<p>Ut magna turpis, feugiat in dictum a, aliquam vitae nunc. Duis eget libero a neque dictum faucibus sed laoreet nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus rutrum sollicitudin metus id facilisis. Duis dignissim sem vel arcu lacinia lobortis. Proin tempor dictum elit, vitae vehicula quam porttitor eget. Duis at erat ante, non gravida odio. Aenean nec urna a dolor posuere posuere et sit amet mauris. Praesent vehicula lacinia magna, a dictum enim mattis ut.</p>
-			</div>
-		</div>
-		<div class="control row small">
-			<p><label for="readTOS" ><input type="checkbox" name="readTOS" value="true"  id="readTOS" > I agree with the Terms and Conditions of Service</label></p>
-			<div class="clearfix"></div>
-		</div>
-		<div class="control row">
-			<div class="fineprint">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio ante, vulputate sed eleifend ut, egestas sed sapien. Sed in eros ut diam faucibus laoreet. Proin leo eros, varius ut scelerisque sit amet, tempus non justo. In quis massa odio, ac condimentum libero. Etiam fringilla sem in turpis ultricies et viverra ante porttitor. Vivamus ac condimentum magna. Mauris nec diam a velit pellentesque vestibulum. Morbi placerat mi id lorem feugiat vulputate. In quis neque libero. Phasellus dictum, orci ut sodales bibendum, turpis sapien condimentum felis, nec aliquet diam metus sit amet nunc. Praesent tristique malesuada lectus, a volutpat lorem rutrum vitae. Nulla at mauris et est consequat suscipit.</p>
-				<p>Etiam sit amet imperdiet nisi. Curabitur fermentum magna sit amet lectus molestie non ornare sem posuere. Sed nulla neque, eleifend ut pharetra et, vulputate ac justo. Donec auctor dolor sed arcu vehicula at dapibus tellus tincidunt. Fusce vulputate, quam vitae aliquet gravida, quam eros dapibus ligula, tempor aliquet sapien massa in mi. Phasellus in odio diam, ut egestas ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin eleifend sem a dolor cursus eget vestibulum lorem tincidunt. Proin sit amet libero neque, sed viverra massa. Sed at metus sed eros ornare consequat et vitae metus. Sed non justo ante.</p>
-				<p>Nulla facilisi. Sed tincidunt risus nec nisi bibendum ultricies. Vestibulum pharetra diam consequat turpis congue tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, nisl sed laoreet dapibus, nisi lorem auctor ligula, sit amet tempus magna nunc at mi. Maecenas velit ligula, porttitor eu tristique sit amet, pharetra ac lorem. In hac habitasse platea dictumst. Cras ac porta turpis. Maecenas suscipit enim at odio vestibulum venenatis et quis elit. Pellentesque nibh velit, gravida eget feugiat a, laoreet eu neque. Duis vitae dolor et massa aliquet sollicitudin nec vitae justo. Pellentesque eleifend mi a risus semper pharetra. Aenean tempor imperdiet luctus. Mauris pharetra condimentum molestie. Proin scelerisque ornare massa, ac pharetra augue semper et.</p>
-				<p>Integer ac tortor a massa gravida fermentum eu quis dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec aliquam odio et risus rutrum ornare. Suspendisse potenti. In sed diam et lacus commodo accumsan. Nunc in purus justo, eget suscipit enim. Vivamus fringilla aliquam nibh ac euismod. Vestibulum ultrices lorem at ipsum dictum sed facilisis risus tincidunt. Praesent pellentesque placerat lorem, et imperdiet sem gravida nec. Suspendisse potenti. Nunc eu varius justo. Ut et pulvinar urna.</p>
-				<p>Ut magna turpis, feugiat in dictum a, aliquam vitae nunc. Duis eget libero a neque dictum faucibus sed laoreet nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus rutrum sollicitudin metus id facilisis. Duis dignissim sem vel arcu lacinia lobortis. Proin tempor dictum elit, vitae vehicula quam porttitor eget. Duis at erat ante, non gravida odio. Aenean nec urna a dolor posuere posuere et sit amet mauris. Praesent vehicula lacinia magna, a dictum enim mattis ut.</p>
-			</div>
-		</div>
 		<div class="control row small">
 			<p><label for="pirvPol"><input type="checkbox" name="pirvPol" value="true" id="pirvPol" > I agree to the Privacy Policy</label></p>
 			<div class="clearfix"></div>
 		</div>
 		<!--<a class="sprite back" href="registration2.php">Back</a>-->
-		<a class="sprite next" href="#">Create Account</a>
+		<a class="sprite next" href="">Create Account</a>
 		<br>
 	</form>
 </div>
