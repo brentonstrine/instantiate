@@ -7,9 +7,6 @@ $(document).ready(function(){
 	//	if($this.val()==placeholder){$this.val("");}
 	//});
 
-
-
-
 // -------------------------------
 // Validation Listeners and Plugin
 // -------------------------------
@@ -18,7 +15,7 @@ $(document).ready(function(){
 var $tip = false;
 
 //listen to elements with a tip attribute
-$("form").on("focus mouseenter", "[data-errMsg]", function(){
+$("form.validate").on("focus mouseenter", "[data-errMsg]", function(){
 	var $elem = $(this);
 	var $offset = $elem.offset();
 	
@@ -43,8 +40,7 @@ function hideTip(){if($tip){$tip.css({'top': '-999px', 'left': '-999px'});}}
 $("form.validate").on("blur", ":input", function(){$(this).validate();});
 
 // Listen to forms that have been identified as having errors and revalidate per keystroke.
-$("form").on("keyup", ".error", function(){$(this).validate();});
-
+$("form.validate").on("keyup", ".error", function(){$(this).validate();});
 
 // Validation Plugin
 // .validate()
@@ -140,6 +136,7 @@ function emailCheck($elem) {
 	} else {
 		$elem.addClass("error");
 		$elem.attr("data-errMsg", "Must be a valid email address.");
+		$elem.trigger("mouseenter");
 		return false;	
 	}
 }
@@ -152,13 +149,9 @@ function duplicate($elem, $targetElem) {
 
 //remove non-digit characters from value to simplify validation in some cases (e.g. makes 123-45-678 equal to 12345678)
 function stripSpecial($elem) {
-	console.log($elem.val());
 	$elem.val($elem.val().replace(/\D/g,""));
-	
-	console.log($elem.val());
 	return true;
 }
-
 
 // ------------------------
 //Additional Jquery Plugins
@@ -167,37 +160,41 @@ function stripSpecial($elem) {
 // .hasAttr() Plugin
 (function($){$.fn.hasAttr = function(name){return this.attr(name) !== undefined;};})(jQuery);
 
+// ------------------------
+// Insert CSS
+// ------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$("body").append("<style>" +
+"input.error {" +
+"	border: solid 1px red;" +
+"	box-shadow: 0 0 0 1px red;" +
+"}" +
+"#tip {" +
+"	position: absolute;" +
+"	top: -999px;" +
+"	left: -999px;" +
+"	border: solid 1px black;" +
+"	max-width: 300px;" +
+"	padding: 10px;" +
+"	background: #fff;" +
+"	border-radius: 8px;" +
+"	box-shadow: 3px 3px 5px 0 #444;" +
+"}" +
+"#tip:after {" +
+"	content: '';" +
+"	border-right: solid 1px black;" +
+"	border-bottom: solid 1px black;" +
+"	width: 10px;" +
+"	height: 10px;" +
+"	-webkit-transform: rotate(45deg);" +
+"	display: block;" +
+"	position: absolute;" +
+"	bottom: -6px;" +
+"	left: 20px;" +
+"	background: #fff;" +
+"	box-shadow: 2px 2px 5px 0 #666;" +
+"}" +
+"</style>");
 
 // end jQuery
 });
